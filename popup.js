@@ -28,7 +28,7 @@ function getPossibilitiesRunner(knownWords) {
             yellow_letters[letter] = [];
           }
           yellow_letters[letter].push(j);
-        } else if (evaluation.includes("incorrect")){ 
+        } else if (evaluation.includes("incorrect")){
           black_letters.push(letter);
         }
       }
@@ -40,7 +40,7 @@ function getPossibilitiesRunner(knownWords) {
     // for each word in the known words
     for (let i = 0; i < knownWords.length; i++) {
         let word = knownWords[i];
-        
+
 
         // Check the black letters
         // if any of the black letters are in the word, skip over this word
@@ -108,7 +108,7 @@ function getPossibilitiesRunner(knownWords) {
 
   console.log("allPossibilities: ", allPossibilities);
 
-  // TODO: could potentially make words a different color or highlighted 
+  // TODO: could potentially make words a different color or highlighted
   // if they interest across all boards
   let html = "";
   for (let i = 0; i < allPossibilities.length; i++) {
@@ -139,8 +139,8 @@ async function runner() {
 
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-  if (!tab.url.includes('quordle.com')) {
-    // if the tab is not on quordle.com, do nothing and display link to quordle.com
+  if (!tab.url.match('quordle.com|merriam-webster.com')) {
+    // if the tab is not on quordle.com, or merriam-webster.com, do nothing and display link to quordle.com
     document.getElementById("possibilities").innerHTML = "<p>Please go to <a href='https://quordle.com' target='_blank'>quordle.com</a> to use this extension.</p>";
     return;
   }
